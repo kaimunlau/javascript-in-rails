@@ -2,6 +2,7 @@
 
 <h1>Monuments</h1>
 
+
 <div id="monuments">
   <% @monuments.each do |monument| %>
     <%= render monument %>
@@ -11,4 +12,9 @@
   <% end %>
 </div>
 
-<%= link_to "New monument", new_monument_path %>
+<div data-controller="toggle" class="mt-5">
+  <button class="btn btn-outline-primary" data-action="click->toggle#fire">Add a new monument</button>
+  <div data-toggle-target="togglableElement" class="d-none">
+    <%= render "form", monument: @monument %>
+  </div>
+</div>
