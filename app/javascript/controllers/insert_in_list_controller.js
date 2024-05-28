@@ -11,8 +11,10 @@ export default class extends Controller {
   }
 
   send(event) {
+    // Prevent the form from being submitted
     event.preventDefault();
 
+    // Send the form data to the server
     fetch(this.formTarget.action, {
       method: "POST",
       headers: { "Accept": "application/json" },
@@ -20,9 +22,11 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        if (data.inserted_item) {
+        if (data.inserted_item) { // => same as if (data.inserted_item !== undefined)
+          // Insert the new item into the list
           this.itemsTarget.insertAdjacentHTML("beforeend", data.inserted_item)
         }
+        // Replace the form with a new form
         this.formTarget.outerHTML = data.form
       })
   }

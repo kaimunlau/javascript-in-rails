@@ -1,8 +1,8 @@
 
 <%= simple_form_for monument,
   data: {
-    insert_in_list_target: "form",
-    action: "submit->insert-in-list#send"
+    insert_in_list_target: "form", # same as data-insert-in-list-target="form"
+    action: "submit->insert-in-list#send" # same as data-action="submit->insert-in-list#send"
   } do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -11,10 +11,10 @@
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :opening_date,
-      as: :string,
+      as: :string, # same as input type="text"
       input_html: {
         data: {
-          controller: "datepicker"
+          controller: "datepicker" # same as data-controller="datepicker"
         }
       }
     %>

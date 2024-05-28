@@ -5,6 +5,6 @@ if @monument.persisted?
   # renvoyer un form pret a l'emploi
   json.form render(partial: "monuments/form", formats: :html, locals: { monument: Monument.new })
 else
-  # renvoyer le form rempli
-  json.form render(partial: "monuments/form", formats: :html, locals: { monument: Monument.new })
+  # renvoyer le form rempli avec le monument en question
+  json.form render(partial: "monuments/form", formats: :html, locals: { monument: @monument })
 end

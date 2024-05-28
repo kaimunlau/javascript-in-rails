@@ -2,6 +2,7 @@ class MonumentsController < ApplicationController
   before_action :set_monument, only: %i[ show edit update destroy ]
 
   # GET /monuments
+  # Retrieves all monuments and initializes a new monument object.
   def index
     @monuments = Monument.all
     @monument = Monument.new
@@ -21,15 +22,21 @@ class MonumentsController < ApplicationController
   end
 
   # POST /monuments
+  # POST /monuments
+  # Creates a new monument with the provided parameters.
   def create
     @monument = Monument.new(monument_params)
 
     respond_to do |format|
       if @monument.save
+        # if the request expects HTML, redirect to the new monument page
         format.html { redirect_to monument_path(@monument) }
+        # if the request expects JSON, render create.json.jbuilder
         format.json
       else
+        # if the request expects HTML, render the new monument page
         format.html { render "monuments/new", status: :unprocessable_entity }
+        # if the request expects JSON, render create.json.jbuilder
         format.json
       end
     end
